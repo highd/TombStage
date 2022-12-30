@@ -1,0 +1,90 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "stone_andesite": "minecraft:blocks/stone_andesite",
+        "particle": "blocks/stone_andesite"
+    },
+    "display": {
+        "gui": {
+            "rotation": [ 30, 45, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 0.625, 0.625, 0.625 ]
+        },
+        "ground": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 3, 0 ],
+            "scale": [ 0.25, 0.25, 0.25 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "head": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.4, 0.4, 0.4 ]
+        },
+        "thirdperson_righthand": {
+            "rotation": [ 75, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        }
+    },
+    "elements": [
+        {
+            "name": "Cube",
+            "from": [ 1, 0, 1 ], 
+            "to": [ 15, 1, 15 ], 
+            "faces": {
+                "north": { "texture": "#stone_andesite", "uv": [ 0, 0, 14, 1 ] },
+                "east": { "texture": "#stone_andesite", "uv": [ 0, 0, 14, 1 ] },
+                "south": { "texture": "#stone_andesite", "uv": [ 0, 0, 14, 1 ] },
+                "west": { "texture": "#stone_andesite", "uv": [ 0, 0, 14, 1 ] },
+                "up": { "texture": "#stone_andesite", "uv": [ 0, 0, 14, 14 ] },
+                "down": { "texture": "#stone_andesite", "uv": [ 0, 0, 14, 14 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 3, 1, 2 ], 
+            "to": [ 13, 4, 8 ], 
+            "faces": {
+                "north": { "texture": "#stone_andesite", "uv": [ 0, 0, 10, 3 ] },
+                "east": { "texture": "#stone_andesite", "uv": [ 0, 0, 6, 3 ] },
+                "south": { "texture": "#stone_andesite", "uv": [ 0, 0, 10, 3 ] },
+                "west": { "texture": "#stone_andesite", "uv": [ 0, 0, 6, 3 ] },
+                "up": { "texture": "#stone_andesite", "uv": [ 0, 0, 10, 6 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 4, 4, 3 ], 
+            "to": [ 12, 16, 6 ], 
+            "faces": {
+                "north": { "texture": "#stone_andesite", "uv": [ 0, 0, 8, 12 ] },
+                "east": { "texture": "#stone_andesite", "uv": [ 0, 0, 3, 12 ] },
+                "south": { "texture": "#stone_andesite", "uv": [ 0, 0, 8, 12 ] },
+                "west": { "texture": "#stone_andesite", "uv": [ 0, 0, 3, 12 ] },
+                "up": { "texture": "#stone_andesite", "uv": [ 0, 0, 8, 3 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 2, 1, 8 ], 
+            "to": [ 3, 8, 14 ], 
+            "faces": {
+                "north": { "texture": "#stone_andesite", "uv": [ 0, 0, 1, 7 ] },
+                "east": { "texture": "#stone_andesite", "uv": [ 0, 0, 6, 7 ] },
+                "south": { "texture": "#stone_andesite", "uv": [ 0, 0, 1, 7 ] },
+                "west": { "texture": "#stone_andesite", "uv": [ 0, 0, 6, 7 ] },
+                "up": { "texture": "#stone_andesite", "uv": [ 0, 0, 1, 6 ] }
+            }
+        }
+    ]
+}
