@@ -5,11 +5,14 @@ import java.util.List;
 import com.highd120.tombstagesmod.blocks.ModBlocks;
 import com.highd120.tombstagesmod.blocks.TileTomb;
 
+import net.darkhax.gamestages.GameStageHelper;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
@@ -20,6 +23,11 @@ public class PlayerDropEvent {
 	  @SubscribeEvent(priority = EventPriority.LOWEST)
 	  public static void onPlayerDrops(PlayerDropsEvent event) {
 		  EntityPlayerMP player = (EntityPlayerMP) event.getEntityPlayer();
+		  if (!GameStageHelper.hasStage(player, TombStageConfig.tombStageName)) {
+			  String msg = I18n.format("msg.tomblock", TombStageConfig.tombStageName);
+			  player.sendMessage(new TextComponentString(msg));
+			  return;
+		  }
 		  if (player instanceof  FakePlayer) {
 			  return;
 		  }
