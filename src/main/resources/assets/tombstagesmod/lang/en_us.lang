@@ -1,2 +1,3 @@
 tile.tombstagesmod.tomb.name=Tomb
 msg.tomblock=The generation of the tomb is locked by stage "%s".
+msg.tombcreatefail=§cThe tomb could not be created.

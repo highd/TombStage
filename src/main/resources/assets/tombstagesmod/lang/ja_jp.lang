@@ -1,2 +1,3 @@
 tile.tombstagesmod.tomb.name=墓
 msg.tomblock=墓の生成はステージ「%s」によってロックされています。
+msg.tombcreatefail=§c墓の生成に失敗しました。

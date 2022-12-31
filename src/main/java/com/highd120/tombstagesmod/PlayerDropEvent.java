@@ -35,7 +35,12 @@ public class PlayerDropEvent {
 		  List<EntityItem> itemEntityList = event.getDrops();
 		  WorldServer world = player.getServerWorld();
 		  IBlockState blockState = ModBlocks.tomb.getDefaultState();
-		  world.setBlockState(tombPos, blockState, 3);
+		  boolean isTombCreated = world.setBlockState(tombPos, blockState, 3);
+		  if (!isTombCreated) {
+			  String msg = I18n.format("msg.tombcreatefail");
+			  player.sendMessage(new TextComponentString(msg));
+			  return;
+		  }
 		  TileTomb tile = (TileTomb) world.getTileEntity(tombPos);
 		  int index = 0;
 		  for (EntityItem itemEntity : itemEntityList) {
