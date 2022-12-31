@@ -1,6 +1,7 @@
 package com.highd120.tombstagesmod.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
@@ -10,6 +11,10 @@ import net.minecraft.world.World;
 public class BlockTomb extends Block {
 	public BlockTomb() {
 		super(Material.IRON);
+		setHarvestLevel("pickaxe", 2);
+		setSoundType(SoundType.STONE);
+		setHardness(10.0F);
+        setResistance(2000.0F);
 	}
 
     @Override
