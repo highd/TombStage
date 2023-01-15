@@ -20,36 +20,36 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class PlayerDropEvent {
-	  @SubscribeEvent(priority = EventPriority.LOWEST)
-	  public static void onPlayerDrops(PlayerDropsEvent event) {
-		  EntityPlayerMP player = (EntityPlayerMP) event.getEntityPlayer();
-		  if (!GameStageHelper.hasStage(player, TombStageConfig.tombStageName)) {
-			  String msg = I18n.format("msg.tomblock", TombStageConfig.tombStageName);
-			  player.sendMessage(new TextComponentString(msg));
-			  return;
-		  }
-		  if (player instanceof  FakePlayer) {
-			  return;
-		  }
-		  BlockPos tombPos = new BlockPos(player);
-		  List<EntityItem> itemEntityList = event.getDrops();
-		  WorldServer world = player.getServerWorld();
-		  IBlockState blockState = ModBlocks.tomb.getDefaultState();
-		  boolean isTombCreated = world.setBlockState(tombPos, blockState, 3);
-		  if (!isTombCreated) {
-			  String msg = I18n.format("msg.tombcreatefail");
-			  player.sendMessage(new TextComponentString(msg));
-			  return;
-		  }
-		  TileTomb tile = (TileTomb) world.getTileEntity(tombPos);
-		  int index = 0;
-		  for (EntityItem itemEntity : itemEntityList) {
-			  if (itemEntity != null && !itemEntity.getItem().isEmpty()) {
-				  ItemStack itemStack = itemEntity.getItem();
-				  tile.setInventory(index, itemStack);
-				  index++;
-			  }
-		  }
-		  itemEntityList.clear();
-	  }
+	@SubscribeEvent(priority = EventPriority.LOWEST)
+	public static void onPlayerDrops(PlayerDropsEvent event) {
+		EntityPlayerMP player = (EntityPlayerMP) event.getEntityPlayer();
+		if (!GameStageHelper.hasStage(player, TombStageConfig.tombStageName)) {
+			String msg = I18n.format("msg.tomblock", TombStageConfig.tombStageName);
+			player.sendMessage(new TextComponentString(msg));
+			return;
+		}
+		if (player instanceof  FakePlayer) {
+			return;
+		}
+		BlockPos tombPos = new BlockPos(player);
+		List<EntityItem> itemEntityList = event.getDrops();
+		WorldServer world = player.getServerWorld();
+		IBlockState blockState = ModBlocks.tomb.getDefaultState();
+		boolean isTombCreated = world.setBlockState(tombPos, blockState, 3);
+		if (!isTombCreated) {
+			String msg = I18n.format("msg.tombcreatefail");
+			player.sendMessage(new TextComponentString(msg));
+			return;
+		}
+		TileTomb tile = (TileTomb) world.getTileEntity(tombPos);
+		int index = 0;
+		for (EntityItem itemEntity : itemEntityList) {
+			if (itemEntity != null && !itemEntity.getItem().isEmpty()) {
+				ItemStack itemStack = itemEntity.getItem();
+				tile.setInventory(index, itemStack);
+				index++;
+			}
+		}
+		itemEntityList.clear();
+	}
 }
