@@ -34,12 +34,14 @@ public class ModItems {
 	}
 
 	public static ItemSoulTorch soulTorch;
+	public static ItemSoul soul;
 	
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> evt) {
 		IForgeRegistry<Item> register = evt.getRegistry();
 		
 		soulTorch = regist(register, new ItemSoulTorch(), "soul_torch");
+		soul = regist(register, new ItemSoul(), "soul");
 		
 		registItemBlock(register, ModBlocks.tomb);
 	}
