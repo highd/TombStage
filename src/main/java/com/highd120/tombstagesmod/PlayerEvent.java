@@ -6,6 +6,8 @@ import java.util.stream.StreamSupport;
 
 import com.highd120.tombstagesmod.blocks.ModBlocks;
 import com.highd120.tombstagesmod.blocks.TileTomb;
+import com.highd120.tombstagesmod.items.ModItems;
+import com.highd120.tombstagesmod.util.ItemUtil;
 
 import net.darkhax.gamestages.GameStageHelper;
 import net.minecraft.block.state.IBlockState;
@@ -24,9 +26,11 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 
-public class PlayerDropEvent {
-	private static String POINT_TAGNAME = "tombstagesmod_point";
+public class PlayerEvent {
+	private static String LAST_POINT_TAGNAME = "tombstagesmod_point";
+	private static String DEATH_POINT_TAGNAME = "tombstagesmod_death_point";
 	private static String MSG_TOMB_CREATE_FAIL_KEY = "msg.tombcreatefail";
 	
 	@SubscribeEvent(priority = EventPriority.LOWEST)
@@ -48,6 +52,20 @@ public class PlayerDropEvent {
 			String msg = I18n.format(MSG_TOMB_CREATE_FAIL_KEY);
 			player.sendMessage(new TextComponentString(msg));
 		}
+
+		NBTTagCompound data = player.getEntityData();
+		if (!data.hasKey(EntityPlayer.PERSISTED_NBT_TAG)) {
+			data.setTag(EntityPlayer.PERSISTED_NBT_TAG, new NBTTagCompound());
+		}
+		NBTTagCompound persist = data.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
+		if (!persist.hasKey(DEATH_POINT_TAGNAME)) {
+			persist.setTag(DEATH_POINT_TAGNAME, new NBTTagCompound());
+		}
+		NBTTagCompound point = persist.getCompoundTag(DEATH_POINT_TAGNAME);
+		BlockPos pos = new BlockPos(player);
+		point.setInteger("X", pos.getX());
+		point.setInteger("Y", pos.getY());
+		point.setInteger("Z", pos.getZ());
 	}
 	
 	public static void createTomb(BlockPos pos, World world, EntityPlayer player, List<EntityItem> itemEntityList) {
@@ -81,10 +99,10 @@ public class PlayerDropEvent {
 			return searchCreateTomb(world, new BlockPos(player));			
 		}
 		NBTTagCompound persist = data.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
-		if (!persist.hasKey(POINT_TAGNAME)) {
+		if (!persist.hasKey(LAST_POINT_TAGNAME)) {
 			return searchCreateTomb(world, new BlockPos(player));	
 		}
-		NBTTagCompound point = persist.getCompoundTag(POINT_TAGNAME);
+		NBTTagCompound point = persist.getCompoundTag(LAST_POINT_TAGNAME);
 		int x = point.getInteger("X");
 		int y = point.getInteger("Y");
 		int z = point.getInteger("Z");
@@ -119,10 +137,10 @@ public class PlayerDropEvent {
 		}
 		World world = player.getEntityWorld();
 		NBTTagCompound persist = data.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
-		if (!persist.hasKey(POINT_TAGNAME)) {
-			persist.setTag(POINT_TAGNAME, new NBTTagCompound());
+		if (!persist.hasKey(LAST_POINT_TAGNAME)) {
+			persist.setTag(LAST_POINT_TAGNAME, new NBTTagCompound());
 		}
-		NBTTagCompound point = persist.getCompoundTag(POINT_TAGNAME);
+		NBTTagCompound point = persist.getCompoundTag(LAST_POINT_TAGNAME);
 		BlockPos playerPos = new BlockPos(player);
 		if (world.isAirBlock(playerPos.down())) {
 			return;
@@ -132,5 +150,29 @@ public class PlayerDropEvent {
 			point.setInteger("Y", pos.getY());
 			point.setInteger("Z", pos.getZ());
 		});
+	}
+
+	@SubscribeEvent
+	public static void onPlayerRespawn(PlayerRespawnEvent event) {
+		EntityPlayer player = event.player;
+		if (!GameStageHelper.hasStage(player, TombStageConfig.tombStageName)) {
+			return;
+		}
+		if (player instanceof  FakePlayer) {
+			return;
+		}
+		ItemStack soul = new ItemStack(ModItems.soul);
+		NBTTagCompound tag = soul.getTagCompound();
+		if (tag == null) {
+			tag = new NBTTagCompound();
+			soul.setTagCompound(tag);
+		}
+		NBTTagCompound data = player.getEntityData();
+		NBTTagCompound persist = data.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
+		NBTTagCompound point = persist.getCompoundTag(DEATH_POINT_TAGNAME);
+		tag.setInteger("X", point.getInteger("X"));
+		tag.setInteger("Y", point.getInteger("Y"));
+		tag.setInteger("Z", point.getInteger("Z"));
+		ItemUtil.dropItem(player.world, player.getPosition(), soul);
 	}
 }

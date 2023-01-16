@@ -19,6 +19,6 @@ public class TombStagesMod{
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-		MinecraftForge.EVENT_BUS.register(PlayerDropEvent.class);
+		MinecraftForge.EVENT_BUS.register(PlayerEvent.class);
     }
 }
