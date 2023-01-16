@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -24,10 +25,22 @@ public class ModItems {
                 new ModelResourceLocation(item.getRegistryName(), "inventory"));
 		return item;
 	}
+	private static <T extends ItemBase> T regist(IForgeRegistry<Item> register, T item, String name) {
+        item.setRegistryName(new ResourceLocation(TombStagesStatus.MOD_ID, name));
+        item.setUnlocalizedName(TombStagesStatus.MOD_ID + "." + name);
+        register.register(item);
+        item.registerModel();
+		return item;
+	}
 
+	public static ItemSoulTorch soulTorch;
+	
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> evt) {
 		IForgeRegistry<Item> register = evt.getRegistry();
+		
+		soulTorch = regist(register, new ItemSoulTorch(), "soul_torch");
+		
 		registItemBlock(register, ModBlocks.tomb);
 	}
 }
