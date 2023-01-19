@@ -2,6 +2,8 @@ package com.highd120.tombstagesmod.items;
 
 import java.util.List;
 
+import com.highd120.tombstagesmod.TombStageConfig;
+
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,6 +19,12 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
 
 public class ItemSoulTorch extends ItemBase {
 	
@@ -34,10 +42,13 @@ public class ItemSoulTorch extends ItemBase {
     	if (tag == null) {
     		return super.onItemRightClick(worldIn, playerIn, handIn);
     	}
-    	
-    	if (!worldIn.isRemote) {
+
+		FluidStack fluidStack = FluidUtil.getFluidContained(stack);
+		if (fluidStack == null || fluidStack.amount < TombStageConfig.soulTorchConsume) {
     		return super.onItemRightClick(worldIn, playerIn, handIn);
-    	}
+		}
+		IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack);
+		handler.drain(TombStageConfig.soulTorchConsume, true);
     	
 		double x = tag.getInteger("X");
 		double y = tag.getInteger("Y");
@@ -62,13 +73,25 @@ public class ItemSoulTorch extends ItemBase {
     @Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
     	NBTTagCompound tag = stack.getTagCompound();
-    	if (tag == null) {
-    		return;
+    	if (tag != null && tag.hasKey("X")) {
+        	int x = tag.getInteger("X");
+        	int y = tag.getInteger("Y");
+        	int z = tag.getInteger("Z");
+        	tooltip.add("(" + x + "," + y + "," + z + ")");
     	}
-    	int x = tag.getInteger("X");
-    	int y = tag.getInteger("Y");
-    	int z = tag.getInteger("Z");
-    	tooltip.add("(" + x + "," + y + "," + z + ")");
+		FluidStack fluidStack = FluidUtil.getFluidContained(stack);
+		if (fluidStack != null) {
+			tooltip.add(fluidStack.getLocalizedName() + ": " + fluidStack.amount + "/" + TombStageConfig.soulTorchCapacity + "mB");
+		}
     }
 
+	@Override
+	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
+		return new FluidHandlerItemStack(stack, TombStageConfig.soulTorchCapacity) {
+			@Override
+			public boolean canFillFluidType(FluidStack fluid) {
+				return fluid.getFluid().getName().equals(TombStageConfig.soulTorchFuel);
+			}
+		};
+	}
 }

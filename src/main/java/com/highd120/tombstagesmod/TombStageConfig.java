@@ -10,4 +10,7 @@ public class TombStageConfig {
 	public static String soulStageName = "soul";
 	public static boolean isDropSoul = true;
 	public static boolean isCreateTomb = true;
+	public static int soulTorchCapacity = 10000;
+	public static String soulTorchFuel = "lava";
+	public static int soulTorchConsume = 50;
 }
