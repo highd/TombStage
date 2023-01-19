@@ -36,6 +36,9 @@ public class PlayerEvent {
 	
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public static void onPlayerDrops(PlayerDropsEvent event) {
+		if (!TombStageConfig.isCreateTomb) {
+			return;
+		}
 		EntityPlayerMP player = (EntityPlayerMP) event.getEntityPlayer();
 		if (!GameStageHelper.hasStage(player, TombStageConfig.tombStageName)) {
 			String msg = I18n.format("msg.tomblock", TombStageConfig.tombStageName);
@@ -155,6 +158,9 @@ public class PlayerEvent {
 
 	@SubscribeEvent
 	public static void onPlayerRespawn(PlayerRespawnEvent event) {
+		if (!TombStageConfig.isDropSoul) {
+			return;
+		}
 		EntityPlayer player = event.player;
 		if (!GameStageHelper.hasStage(player, TombStageConfig.soulStageName)) {
 			String msg = I18n.format(MSG_SOUL_LOCK_KEY, TombStageConfig.soulStageName);
