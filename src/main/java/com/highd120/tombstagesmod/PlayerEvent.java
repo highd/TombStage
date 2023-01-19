@@ -32,6 +32,7 @@ public class PlayerEvent {
 	private static String LAST_POINT_TAGNAME = "tombstagesmod_point";
 	private static String DEATH_POINT_TAGNAME = "tombstagesmod_death_point";
 	private static String MSG_TOMB_CREATE_FAIL_KEY = "msg.tombcreatefail";
+	private static String MSG_SOUL_LOCK_KEY = "msg.soul_lock";
 	
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public static void onPlayerDrops(PlayerDropsEvent event) {
@@ -155,7 +156,9 @@ public class PlayerEvent {
 	@SubscribeEvent
 	public static void onPlayerRespawn(PlayerRespawnEvent event) {
 		EntityPlayer player = event.player;
-		if (!GameStageHelper.hasStage(player, TombStageConfig.tombStageName)) {
+		if (!GameStageHelper.hasStage(player, TombStageConfig.soulStageName)) {
+			String msg = I18n.format(MSG_SOUL_LOCK_KEY, TombStageConfig.soulStageName);
+			player.sendMessage(new TextComponentString(msg));
 			return;
 		}
 		if (player instanceof  FakePlayer) {

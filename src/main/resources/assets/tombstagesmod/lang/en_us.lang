@@ -4,3 +4,4 @@ item.tombstagesmod.soul.name=Soul
 tile.tombstagesmod.tomb.name=Tomb
 msg.tomblock=The generation of the tomb is locked by stage "%s".
 msg.tombcreatefail=§cThe tomb could not be created.
+msg.soul_lock=The fall of the soul is locked by stage "%s".

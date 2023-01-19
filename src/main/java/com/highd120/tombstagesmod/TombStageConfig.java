@@ -7,4 +7,5 @@ import net.minecraftforge.common.config.Config.Type;
 public class TombStageConfig {
 	public static String tombStageName = "tomb";
 	public static int tombSearchRange = 3;
+	public static String soulStageName = "soul";
 }
