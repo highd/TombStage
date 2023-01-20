@@ -49,7 +49,15 @@ public class SoulTorchRecipe extends IForgeRegistryEntry.Impl<IRecipe> implement
 			return ItemStack.EMPTY;
 		}
 		item = item.copy();
-		item.setTagCompound(point);
+		
+		NBTTagCompound tag = item.getTagCompound();
+		if (tag == null) {
+			item.setTagCompound(point);
+		} else {
+			tag.setInteger("X", point.getInteger("X"));
+			tag.setInteger("Y", point.getInteger("Y"));
+			tag.setInteger("Z", point.getInteger("Z"));
+		}
 		return item;
 	}
 
