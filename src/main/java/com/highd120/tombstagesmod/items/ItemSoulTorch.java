@@ -44,11 +44,11 @@ public class ItemSoulTorch extends ItemBase {
     	}
 
 		FluidStack fluidStack = FluidUtil.getFluidContained(stack);
-		if (fluidStack == null || fluidStack.amount < TombStageConfig.soulTorchConsume) {
+		if (fluidStack == null || fluidStack.amount < TombStageConfig.soulTorchConsumption) {
     		return super.onItemRightClick(worldIn, playerIn, handIn);
 		}
 		IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack);
-		handler.drain(TombStageConfig.soulTorchConsume, true);
+		handler.drain(TombStageConfig.soulTorchConsumption, true);
     	
 		double x = tag.getInteger("X");
 		double y = tag.getInteger("Y");
