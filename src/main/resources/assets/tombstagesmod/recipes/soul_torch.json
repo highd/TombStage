@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "tombstagesmod:soul_torch"
+  },
+  "pattern": [
+    "D",
+	"S",
+	"S"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  }
+}
