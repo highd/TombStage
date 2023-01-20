@@ -29,6 +29,11 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
 
 public class ItemSoulTorch extends ItemBase {
+	public ItemSoulTorch() {
+		super();
+		setMaxStackSize(1);
+	}
+
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack stack= playerIn.getHeldItem(handIn);
