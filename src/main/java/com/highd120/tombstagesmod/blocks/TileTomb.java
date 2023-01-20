@@ -1,5 +1,7 @@
 package com.highd120.tombstagesmod.blocks;
 
+import com.highd120.tombstagesmod.TombStageConfig;
+
 import net.minecraft.item.ItemStack;
 
 public class TileTomb extends TileHasInventory {
@@ -15,7 +17,7 @@ public class TileTomb extends TileHasInventory {
 
 	public static class ItemStackHandler extends SimpleItemStackHandler {
 		public ItemStackHandler(TileHasInventory inv) {
-			super(inv, 60);
+			super(inv, TombStageConfig.tombSlotCount);
 		}
 		
 		@Override

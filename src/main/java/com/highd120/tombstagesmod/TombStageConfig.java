@@ -29,4 +29,7 @@ public class TombStageConfig {
 
 	@Comment({"Fuel consumption of the \"soul wand.\""})
 	public static int soulTorchConsumption = 50;
+	
+	@Comment({"Number of slots in the tomb"})
+	public static int tombSlotCount = 60;
 }
