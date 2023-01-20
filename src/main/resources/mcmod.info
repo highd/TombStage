@@ -2,13 +2,13 @@
 {
   "modid": "tombstagesmod",
   "name": "Tomb Stages",
-  "description": "Example placeholder mod.",
+  "description": "",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["highd120"],
+  "credits": "",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

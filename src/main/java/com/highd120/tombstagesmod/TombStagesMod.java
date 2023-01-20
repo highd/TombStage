@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@Mod(modid = TombStagesStatus.MOD_ID, name = TombStagesStatus.NAME, version = TombStagesStatus.VERSION)
+@Mod(modid = TombStagesStatus.MOD_ID, name = TombStagesStatus.NAME, version = TombStagesStatus.VERSION, dependencies = TombStagesStatus.DEPENDENCIES)
 public class TombStagesMod{
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
