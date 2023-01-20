@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public class SoulTorchRecipe extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
+public class SoulTorchAndSoulRecipe extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
 	@Override
 	public boolean isDynamic() {
 		return true;

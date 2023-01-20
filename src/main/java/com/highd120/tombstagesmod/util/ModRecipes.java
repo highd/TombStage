@@ -1,7 +1,8 @@
 package com.highd120.tombstagesmod.util;
 
 import com.highd120.tombstagesmod.TombStagesStatus;
-import com.highd120.tombstagesmod.items.SoulTorchRecipe;
+import com.highd120.tombstagesmod.items.SoulTorchAndBucketRecipe;
+import com.highd120.tombstagesmod.items.SoulTorchAndSoulRecipe;
 
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
@@ -16,7 +17,9 @@ public class ModRecipes {
 	public static void registerRecipes(RegistryEvent.Register<IRecipe> evt) {
 		IForgeRegistry<IRecipe> register = evt.getRegistry();
 
-		register.register(new SoulTorchRecipe()
+		register.register(new SoulTorchAndSoulRecipe()
 				.setRegistryName(new ResourceLocation(TombStagesStatus.MOD_ID, "soul_torch_recipe")));
+		register.register(new SoulTorchAndBucketRecipe()
+				.setRegistryName(new ResourceLocation(TombStagesStatus.MOD_ID, "soul_torch_bucket_recipe")));
 	}
 }
