@@ -1,6 +1,7 @@
 item.tombstagesmod.soul_torch.name=Soul Torch
 item.tombstagesmod.soul_less_torch.name=Soul Torch(off)
 item.tombstagesmod.soul.name=Soul
+item.tombstagesmod.soul_reset.name=Soul Remover
 
 tile.tombstagesmod.tomb.name=Tomb
 msg.tomblock=The generation of the tomb is locked by stage "%s".

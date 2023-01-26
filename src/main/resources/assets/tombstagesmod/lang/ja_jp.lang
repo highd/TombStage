@@ -1,6 +1,7 @@
 item.tombstagesmod.soul_torch.name=魂の松明
 item.tombstagesmod.soul_less_torch.name=魂の松明(休止)
 item.tombstagesmod.soul.name=魂
+item.tombstagesmod.soul_reset.name=魂抜きの魔法薬
 
 tile.tombstagesmod.tomb.name=墓
 msg.tomblock=墓の生成はステージ「%s」によってロックされています。

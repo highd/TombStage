@@ -35,6 +35,7 @@ public class ModItems {
 
 	public static ItemSoulTorch soulTorch;
 	public static ItemSoul soul;
+	public static ItemSoulReset soulReset;
 	
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> evt) {
@@ -42,6 +43,7 @@ public class ModItems {
 		
 		soulTorch = regist(register, new ItemSoulTorch(), "soul_torch");
 		soul = regist(register, new ItemSoul(), "soul");
+		soulReset = regist(register, new ItemSoulReset(), "soul_reset");
 		
 		registItemBlock(register, ModBlocks.tomb);
 	}
