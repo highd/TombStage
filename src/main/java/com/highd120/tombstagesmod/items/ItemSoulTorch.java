@@ -6,6 +6,7 @@ import com.highd120.tombstagesmod.TombStageConfig;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,6 +33,7 @@ public class ItemSoulTorch extends ItemBase {
 	public ItemSoulTorch() {
 		super();
 		setMaxStackSize(1);
+		setCreativeTab(CreativeTabs.MISC);
 	}
 
 	@Override
