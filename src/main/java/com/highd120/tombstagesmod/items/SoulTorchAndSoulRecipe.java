@@ -4,7 +4,9 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 public class SoulTorchAndSoulRecipe extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
@@ -59,6 +61,21 @@ public class SoulTorchAndSoulRecipe extends IForgeRegistryEntry.Impl<IRecipe> im
 			tag.setInteger("Z", point.getInteger("Z"));
 		}
 		return item;
+	}
+	
+	@Override
+	public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv) {
+        NonNullList<ItemStack> resultList = NonNullList.withSize(inv.getSizeInventory(), ItemStack.EMPTY);
+        for (int i = 0; i < resultList.size(); i++) {
+        	ItemStack stack = inv.getStackInSlot(i);
+        	ItemStack result = ForgeHooks.getContainerItem(stack);
+        	if (stack.getItem() == ModItems.soul) {
+        		resultList.set(i, stack.copy());
+        	} else {
+        		resultList.set(i, result);
+        	}
+        }
+        return resultList;
 	}
 
 	@Override
