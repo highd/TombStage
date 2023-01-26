@@ -22,7 +22,8 @@ public class SoulTorchAndSoulRecipe extends IForgeRegistryEntry.Impl<IRecipe> im
 			ItemStack stack = inv.getStackInSlot(i);
 			if (!stack.isEmpty()) {
 				if (stack.getItem() == ModItems.soulTorch) {
-					isFoundTorch = true;
+					NBTTagCompound tag = stack.getTagCompound();
+					isFoundTorch = tag == null || !tag.hasKey("X");
 				}
 				if (stack.getItem() == ModItems.soul) {
 					isFoundSoul = true;

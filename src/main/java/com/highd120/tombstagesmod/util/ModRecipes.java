@@ -3,6 +3,7 @@ package com.highd120.tombstagesmod.util;
 import com.highd120.tombstagesmod.TombStagesStatus;
 import com.highd120.tombstagesmod.items.SoulTorchAndBucketRecipe;
 import com.highd120.tombstagesmod.items.SoulTorchAndSoulRecipe;
+import com.highd120.tombstagesmod.items.SoulTorchAndSoulResetRecipe;
 
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
@@ -21,5 +22,7 @@ public class ModRecipes {
 				.setRegistryName(new ResourceLocation(TombStagesStatus.MOD_ID, "soul_torch_recipe")));
 		register.register(new SoulTorchAndBucketRecipe()
 				.setRegistryName(new ResourceLocation(TombStagesStatus.MOD_ID, "soul_torch_bucket_recipe")));
+		register.register(new SoulTorchAndSoulResetRecipe()
+				.setRegistryName(new ResourceLocation(TombStagesStatus.MOD_ID, "soul_torch_reset_recipe")));
 	}
 }
