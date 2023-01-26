@@ -1,4 +1,5 @@
 item.tombstagesmod.soul_torch.name=魂の松明
+item.tombstagesmod.soul_less_torch.name=魂の松明(休止)
 item.tombstagesmod.soul.name=魂
 
 tile.tombstagesmod.tomb.name=墓

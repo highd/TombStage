@@ -1,6 +1,7 @@
 {
   "result": {
-    "item": "tombstagesmod:soul_torch"
+    "item": "tombstagesmod:soul_torch",
+    "data": 0
   },
   "pattern": [
     "D",
