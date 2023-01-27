@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "tombstagesmod:soul_reset"
+  },
+  "pattern": [
+	" E ",
+	"CPC",
+    " C "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "P": {
+      "type": "minecraft:item_nbt",
+      "item": "minecraft:potion",
+      "nbt": { 
+        "Potion": "minecraft:strong_healing"
+      }
+    },
+    "E": {
+      "item": "minecraft:ender_eye"
+    },
+    "C": {
+      "item": "minecraft:chorus_fruit_popped"
+    }
+  }
+}
