@@ -139,7 +139,7 @@ public class ItemSoulTorch extends ItemBase {
 	@Override
 	public String getUnlocalizedName(ItemStack par1ItemStack) {
 		return "item." + TombStagesStatus.MOD_ID + "." + meteNameList[Math.min(meteNameList.length - 1,
-				par1ItemStack.getItemDamage())];
+				par1ItemStack.getMetadata())];
 	}
 	
 	@SideOnly(Side.CLIENT)
